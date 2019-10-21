@@ -152,6 +152,73 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Mysql第三次课" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/21/Mysql第三次课/">Mysql第三次课</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/21/Mysql第三次课/" class="archive-article-date">
+  	<time datetime="2019-10-21T06:00:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>/*<br>Mysql第三次课<br>    order by             排序<br>        asc 升序<br>        desc降序<br>    group by             把表分组<br>    group by…having.. 分组并筛选出来符合条件的组<br>    子查询<br>      查询语句里边嵌套查询语句<br>      子查询的结果作为了外部查询的条件<br>    连接<br>      把多张表连接成一张表<br>        一般连接有主外键关系的表<br>      连接分类：<br>        普通连接<br>        内连接<br>        inner join..on..<br>        inner join    用内连接方式连接两张表 on 后面写的是条件<br>        外连接（左连接与右连接）<br>            左连接<br>            left join..on..<br>            左边的表显示所有数据<br>            右边的表只显示匹配上的数据<br>            右连接<br>            right join..on..<br>            右边的表显示全部数据<br>            左边的表只显示匹配上的数据<br>        全连接<br>            左右边都全部显示</p>
+<p><em>/<br>create database schooldb;<br>use schooldb;<br>#教师表<br>create table teacher(<br>  tid int primary key auto_increment,<br>  tnam varchar(20) not null,<br>  hiredate date,#入职日期<br>  sex varchar(5)<br>)<br>#班级信息表<br>create table ClassInfo(<br>  cid int PRIMARY KEY AUTO_INCREMENT,<br>  cnam varchar(20) not null,<br>  grid int,#年级编号<br>  beginyear varchar(20)<br>)<br>#学生信息表<br>CREATE TABLE StudentInfo(<br>  sid INT PRIMARY KEY AUTO_INCREMENT,<br>  snam varchar(20) not null,<br>  sex varchar(5),<br>  age int,<br>  birthday date,<br>  cid int,#班级编号<br>  beginyear VARCHAR(20),<br>  stel varchar(15),<br>  address varchar(100),<br>  email varchar(50)<br>)<br>#课程表<br>CREATE TABLE course(<br>  coid INT PRIMARY KEY AUTO_INCREMENT,<br>  cnam varchar(50) not null,#课程名<br>  tid int                   #讲授老师编号<br>)<br>#成绩表<br>CREATE TABLE score(<br>  scid INT PRIMARY KEY AUTO_INCREMENT,<br>  sid int,#学生学号<br>  coid int,#课程编号<br>  score int,<br>  remark varchar(100)#备注<br>)<br>#年级表<br>CREATE TABLE grade(<br>  gid INT PRIMARY KEY AUTO_INCREMENT,<br>  gnam varchar(50),#年级名<br>  major varchar(100)#专业<br>)<br>#一次性插入多条语句<br>insert into teacher(tnam,hiredate,sex)<br>values(‘张三’,’2017-09-01’,’男’),<br>(‘李四’,’2017-07-02’,’男’),<br>(‘王五’,’2016-08-16’,’男’);<br>insert into ClassInfo(cnam,grid,beginyear)<br>VALUES(‘软信1’,1,’2018’),<br>(‘移动1’,2,’2018’),<br>(‘软信1’,3,’2019’),<br>(‘移动1’,4,’2019’);<br>INSERT INTO StudentInfo(snam,sex,age,birthday,cid,beginyear,stel,address,email)<br>VALUES(‘崔一’,’男’,18,’2001-07-05’,1,’2018’,’18867890987’,’河南省许昌市’,‘159078923@qq.com’),<br>(‘丁二’,’男’,19,’2001-08-05’,2,’2018’,’18967890980’,’河南省许昌市’,‘156078923@qq.com’),<br>(‘丁三’,’男’,20,’1999-09-05’,3,’2018’,’18877890987’,’河南省南阳市’,‘157078923@qq.com’),<br>(‘周三’,’女’,17,’2002-06-05’,4,’2019’,’18867890989’,’河南省郑州市’,‘158078923@qq.com’);<br>INSERT INTO StudentInfo(snam,sex,age,birthday,cid,beginyear,stel,address,email)<br>(‘周四’,’女’,17,’2002-06-05’,5,’2019’,’18867899989’,’河南省郑州市’,‘148078923@qq.com’);<br>insert into course(cnam,tid)<br>values(‘计算机基础’,1),(‘前端基础’,2),(‘java基础’,3),(‘js基础’,3);<br>insert into score(sid,coid,score,remark)<br>values(1,1,90,’无’),(1,2,75,’无’),<br>(1,3,59,’无’),(1,4,76,’无’),<br>(2,1,93,’无’),(2,2,77,’无’),<br>(2,3,66,’无’),(2,4,78,’无’),<br>(3,1,87,’无’),(3,2,55,’无’),<br>(3,3,76,’无’),(4,1,88,’无’),<br>(4,2,66,’无’),(4,3,90,’无’),<br>(4,4,76,’无’);<br>insert into grade(gnam,major)<br>values(‘18级’,’软信’),(‘19级’,’软信’),(‘18级’,’移动’),(‘19级’,’移动’);<br>#order by 排序<br>#把StudentInfo表按照年纪从小到大排序<br>select * from studentinfo order by age asc;<br>SELECT * FROM studentinfo ORDER BY age desc;<br>#group by分组<br>#把某张表按照某个字段进行分组<br>#查询出每个学生的平均成绩，结果要显示的字段为，学生学号，平均成绩<br>select sid,avg(score) ‘平均成绩’ from score group by sid;<br>#group by…having..筛选出来符合条件的组<br>#查询出来全部及格学生的平均成绩<br>select sid,avg(score) ‘avg’ from score group  by sid having min(score)&gt;60;<br>#查询出考试门数不够四门的学生学号<br>select sid from score group by sid having count(</em>)&lt;4;<br>#查询出“计算机基础”的成绩<br>select coid,score from score where coid=(<br>SELECT coid FROM course WHERE cnam=’计算机基础’);<br>#查询出每门课的平均成绩<br>select coid,avg (score) ‘平均成绩’ from * score group by coid;<br>#查询出’周三’学生的平均成绩<br>SELECT AVG (score) ‘平均成绩’ FROM score where  sid=(<br>select sid from studentInfo where snam=’周三’);<br>#连接<br>#普通连接<br>select * from studentinfo s,score c where s.sid=c.sid;<br>#查询出每个人的平均成绩，要显示的字段为姓名  平均成绩<br>SELECT snam, avg(score) FROM studentinfo s,score c WHERE s.sid=c.sid group by snam;<br>#内连接<br>select * from studentinfo s inner join score c on s.sid=c.sid;<br>SELECT snam, avg(score) FROM studentinfo s INNER JOIN score c  ON s.sid=c.sid group by s.sid;<br>#左连接<br>SELECT * FROM studentinfo s INNER JOIN score c ON s.sid=c.sid;<br>#查询出有不及格成绩的学生信息<br>#缺考算不及格<br>select * from studentinfo where sid in(<br>select sid from score group by sid having min(score)&lt;60 union<br>select sid from score group by sid having count(<em>)&lt;(select count(</em>) from course));</p>
+<p>/*</p>
+<p>  name1   class  grade<br>  张三   语文    89<br>  张三   数学    78<br>  李四   语文    90<br>  李四   数学    81<br>  王五   语文    80<br>  王五   数学    79<br>  王五   英语    88</p>
+<p>*/<br>select name from students group by name1 having min(grade)&gt;80<br>select name1 from students where name1 not in(<br>select name1 from students where grade&lt;80);</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/21/Mysql第三次课/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Mysql第二次课" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
