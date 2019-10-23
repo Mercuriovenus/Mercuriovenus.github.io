@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Mysql第四次课 | Hexo</title>
+  <title>Mysql第五次课 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="/* truncate清空表    truncate  table  表名 is null is not null 模糊查询 like     %代表一个或多个字符     _代表一个字符 exits    存在      exits里边括住的是一个查询语句，      如果查询语句有结果，外部查询就正常执行，      如果没结果，外部查询不执行 not exits不存在*/SELECT * F">
+  <meta name="description" content="/*  Mysql第五次课       索引与事务       数据库优化           数据库优化指的就是通过各种途径提高查询效率       优化的方式有多种，但其中之一就是为字段添加索引一、什么是索引？     相当于为某个字段或某几个字段添加了目录，大大提高了查询效率       索引的分类       普通索引       唯一索引        为字段添加唯一约束，就同时添加了唯">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql第四次课">
-<meta property="og:url" content="http://yoursite.com/2019/10/22/Mysql第四次课/index.html">
+<meta property="og:title" content="Mysql第五次课">
+<meta property="og:url" content="http://yoursite.com/2019/10/23/Mysql第五次课/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="/* truncate清空表    truncate  table  表名 is null is not null 模糊查询 like     %代表一个或多个字符     _代表一个字符 exits    存在      exits里边括住的是一个查询语句，      如果查询语句有结果，外部查询就正常执行，      如果没结果，外部查询不执行 not exits不存在*/SELECT * F">
+<meta property="og:description" content="/*  Mysql第五次课       索引与事务       数据库优化           数据库优化指的就是通过各种途径提高查询效率       优化的方式有多种，但其中之一就是为字段添加索引一、什么是索引？     相当于为某个字段或某几个字段添加了目录，大大提高了查询效率       索引的分类       普通索引       唯一索引        为字段添加唯一约束，就同时添加了唯">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-22T03:24:54.835Z">
+<meta property="og:updated_time" content="2019-10-23T06:00:52.722Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql第四次课">
-<meta name="twitter:description" content="/* truncate清空表    truncate  table  表名 is null is not null 模糊查询 like     %代表一个或多个字符     _代表一个字符 exits    存在      exits里边括住的是一个查询语句，      如果查询语句有结果，外部查询就正常执行，      如果没结果，外部查询不执行 not exits不存在*/SELECT * F">
+<meta name="twitter:title" content="Mysql第五次课">
+<meta name="twitter:description" content="/*  Mysql第五次课       索引与事务       数据库优化           数据库优化指的就是通过各种途径提高查询效率       优化的方式有多种，但其中之一就是为字段添加索引一、什么是索引？     相当于为某个字段或某几个字段添加了目录，大大提高了查询效率       索引的分类       普通索引       唯一索引        为字段添加唯一约束，就同时添加了唯">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,27 +154,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Mysql第四次课" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Mysql第五次课" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Mysql第四次课
+      Mysql第五次课
     </h1>
   
 
         
-        <a href="/2019/10/22/Mysql第四次课/" class="archive-article-date">
-  	<time datetime="2019-10-22T03:24:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
+        <a href="/2019/10/23/Mysql第五次课/" class="archive-article-date">
+  	<time datetime="2019-10-23T06:00:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>/*<br> truncate清空表<br>    truncate  table  表名<br> is null<br> is not null<br> 模糊查询<br> like<br>     %代表一个或多个字符<br>     _代表一个字符<br> exits    存在<br>      exits里边括住的是一个查询语句，<br>      如果查询语句有结果，外部查询就正常执行，<br>      如果没结果，外部查询不执行<br> not exits不存在<br>*/<br>SELECT * FROM course WHERE cnam IS NOT NULL<br>#模糊查询<br>#查询出姓名中包含“三”的学生的信息<br>SELECT * FROM studentinfo WHERE snam LIKE ‘%三%’;<br>#查询出姓周的同学信息<br>SELECT * FROM studentinfo WHERE snam LIKE ‘周%’;<br>#如果有安阳市的学生，就把本班所有学生的信息查询出来<br>SELECT * FROM studentinfo WHERE EXISTS(<br>SELECT * FROM studentinfo WHERE address LIKE ‘%安阳%’)</p>
+        <p>/*<br>  Mysql第五次课<br>       索引与事务<br>       数据库优化<br>           数据库优化指的就是通过各种途径提高查询效率<br>       优化的方式有多种，但其中之一就是为字段添加索引<br>一、什么是索引？<br>     相当于为某个字段或某几个字段添加了目录，大大提高了查询效率<br>       索引的分类<br>       普通索引<br>       唯一索引<br>        为字段添加唯一约束，就同时添加了唯一索引<br>       主键索引<br>        为字段添加主键约束，就同时添加了主键索引<br>       组合索引<br>       全文索引<br>       空间索引<br>      创建索引的方式<br>    1、创建表的同时，添加索引<br>    2、Alter table<br>    3、create index<br>二、事务<br>    几条语句组成一个整体，要么全部执行成功，要么全部执行失败<br>    关闭事务自动提交<br>        第一开启事务                    begin<br>        第二执行语句判断成功不成功，不成功就要全部回滚  rollback<br>        第三成功就进行提交事务                commit<br>    其实每条语句都是一条自动提交的事务<br>        原子性<br>            事务的语句是不可分割的，要么全部成功，要么全部失败<br>        一致性<br>            事务完成前后，数据必须保持完全一致的状态<br>        隔离性<br>            事务与事务之间互不影响，相互独立<br>        持久性<br>            事务一旦完成，对性能影响是永久性的<br>事务的隔离级别（易考）<br>    为提交读(read uncommitted)<br>    已提交读(read committed)<br>    重复读(repeatable read)<br>    可串行化(serializable)<br>*/<br>#1、创建表的同时，添加索引<br>create table emp1(<br>    eid int primary key auto_increment,<br>    enam varchar(20) not null,<br>    etel varchar(20) unique,#唯一索引<br>    index(enam)#为enam添加普通索引<br>)<br>show index from emp1;<br>#create index<br>#创建普通索引<br>create index index_name on table_name(colname[length])<br>#创建唯一索引<br>create unique index index_name ON table_name(colname[LENGTH])</p>
 
       
 
@@ -254,7 +254,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/22/Mysql第四次课/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/23/Mysql第五次课/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -268,18 +268,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/23/Mysql第五次课/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Mysql第五次课
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/10/21/Mysql第三次课/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Mysql第三次课</div>
+    <a href="/2019/10/22/Mysql第四次课/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mysql第四次课</div>
       <i class="icon-circle-right"></i>
     </a>
   
